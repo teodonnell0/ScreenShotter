@@ -129,6 +129,7 @@ public class Parser {
 			}
 		}
 		
+		new ScreenShot(w, h, x, y, d, format, copy);
 		
 	}
 	

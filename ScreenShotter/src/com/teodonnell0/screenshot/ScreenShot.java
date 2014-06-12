@@ -56,6 +56,8 @@ public class ScreenShot {
 
 		this.copy = c;
 		this.format = fmt;
+		
+		takeScreenShot();
 	}
 
 	public ScreenShot(int d, String fmt)
@@ -80,6 +82,7 @@ public class ScreenShot {
 		try
 		{
 			ImageIO.write(capture, format, new File(getFileName()));
+			System.out.println("File wrote "+getFileName());
 		} catch(IOException e)
 		{
 			e.printStackTrace();
@@ -91,7 +94,7 @@ public class ScreenShot {
 		BufferedImage cpt = null;
 		try
 		{
-			Rectangle rct = new Rectangle(width, height, xVal, yVal);
+			Rectangle rct = new Rectangle(xVal, yVal, width, height);
 			Robot 	  rbt = new Robot();
 			rbt.delay(delay);
 			cpt = rbt.createScreenCapture(rct);
@@ -105,7 +108,8 @@ public class ScreenShot {
 	private String getFileName()
 	{
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd_HHmmss");
-		return fmt.format(Calendar.getInstance())+"."+fmt;
+		String name = fmt.format(Calendar.getInstance().getTime());
+		return name + "." + format;
 	}
 
 
